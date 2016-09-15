@@ -147,7 +147,7 @@ public class HTTPSecurity {
                 collect.append(SecCertificateCreateWithData(nil,cert)!)
             }
             SecTrustSetAnchorCertificates(trust,collect)
-            var result: SecTrustResultType = 0
+            var result: SecTrustResultType = SecTrustResultType.init(rawValue: 0)!
             SecTrustEvaluate(trust,&result)
             let r = Int(result)
             if r == kSecTrustResultUnspecified || r == kSecTrustResultProceed {
@@ -194,7 +194,7 @@ public class HTTPSecurity {
         var possibleTrust: SecTrust?
         SecTrustCreateWithCertificates(cert, policy, &possibleTrust)
         if let trust = possibleTrust {
-            var result: SecTrustResultType = 0
+            var result: SecTrustResultType = SecTrustResultType.init(rawValue: 0)!
             SecTrustEvaluate(trust, &result)
             return SecTrustCopyPublicKey(trust)
         }
